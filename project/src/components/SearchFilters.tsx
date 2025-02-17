@@ -19,29 +19,29 @@ export function SearchFilters({ onFilterChange, activeFilters }: SearchFiltersPr
           <input
             type="text"
             placeholder="Search architecture firms..."
-            className="w-full pl-10 pr-4 py-2 border border-gray-200 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+            className="w-full pl-10 pr-4 py-2 border border-gray-200 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent text-black"
           />
         </div>
         
         <div className="flex flex-wrap gap-4">
           <select 
-            className="px-4 py-2 border border-gray-200 rounded-lg bg-white focus:ring-2 focus:ring-blue-500 focus:border-transparent min-w-[140px]"
+            className="px-4 py-2 border border-gray-200 rounded-lg bg-white focus:ring-2 focus:ring-blue-500 focus:border-transparent min-w-[140px] text-black"
             value={activeFilters.location}
             onChange={(e) => onFilterChange('location', e.target.value)}
           >
             <option value="">Location</option>
-            <option value="New York, NY">New York</option>
-            <option value="San Francisco, CA">San Francisco</option>
-            <option value="Chicago, IL">Chicago</option>
-            <option value="Miami, FL">Miami</option>
-            <option value="Seattle, WA">Seattle</option>
-            <option value="Boston, MA">Boston</option>
-            <option value="Portland, OR">Portland</option>
-            <option value="Austin, TX">Austin</option>
+            <option value="Mumbai">Mumbai</option>
+            <option value="Delhi">Delhi</option>
+            <option value="Bangalore">Bangalore</option>
+            <option value="Hyderabad">Hyderabad</option>
+            <option value="Chennai">Chennai</option>
+            <option value="Kolkata">Kolkata</option>
+            <option value="Pune">Pune</option>
+            <option value="Ahmedabad">Ahmedabad</option>
           </select>
           
           <select 
-            className="px-4 py-2 border border-gray-200 rounded-lg bg-white focus:ring-2 focus:ring-blue-500 focus:border-transparent min-w-[140px]"
+            className="px-4 py-2 border border-gray-200 rounded-lg bg-white focus:ring-2 focus:ring-blue-500 focus:border-transparent min-w-[140px] text-black"
             value={activeFilters.specialization}
             onChange={(e) => onFilterChange('specialization', e.target.value)}
           >
@@ -57,7 +57,7 @@ export function SearchFilters({ onFilterChange, activeFilters }: SearchFiltersPr
           </select>
 
           <select 
-            className="px-4 py-2 border border-gray-200 rounded-lg bg-white focus:ring-2 focus:ring-blue-500 focus:border-transparent min-w-[140px]"
+            className="px-4 py-2 border border-gray-200 rounded-lg bg-white focus:ring-2 focus:ring-blue-500 focus:border-transparent min-w-[140px] text-black"
             value={activeFilters.projectSize}
             onChange={(e) => onFilterChange('projectSize', e.target.value)}
           >
