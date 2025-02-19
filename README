@@ -1,1 +1,40 @@
 
+# ArchX - Architecture Firm Directory
+https://creative-entremet-3a3d43.netlify.app/
+
+## 📌 Overview
+**ArchX** is a platform designed to connect clients with top architecture firms. Users can browse, filter, and explore various firms based on location, specialization, and project size.
+
+## 🚀 Features
+- 🔍 **Browse & Filter** architecture firms
+- 🏢 **Firm Details Page** with in-depth information
+- 📍 **Location-based Search**
+- 🏗️ **Specialization & Project Size Filters**
+- 📞 **Contact Information** for firms
+- 📄 **Responsive Design** for seamless access on any device
+
+## 🛠️ Tech Stack
+- **Frontend:** React, Tailwind CSS, TypeScript
+- **Icons:** Lucide-react
+- **Hosting:** Netlify
+
+---
+
+## 📂 Project Structure
+```
+ArchX/
+├── public/           # Static assets (images, icons)
+├── src/
+│   ├── components/   # Reusable UI components
+│   ├── data/         # Sample firm data
+│   ├── pages/        # Main pages
+│   ├── types/        # TypeScript type definitions
+│   ├── App.tsx       # Main application file
+│   ├── index.tsx     # Entry point
+│   ├── styles/       # Global styles
+├── .gitignore        # Ignored files
+├── package.json      # Project dependencies
+├── README.md         # Project documentation
+└── tsconfig.json     # TypeScript configuration
+```
+
