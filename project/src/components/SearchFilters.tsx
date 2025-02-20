@@ -7,6 +7,7 @@ interface SearchFiltersProps {
     location: string;
     specialization: string;
     projectSize: string;
+    priceRange: string;
   };
 }
 
@@ -24,49 +25,38 @@ export function SearchFilters({ onFilterChange, activeFilters }: SearchFiltersPr
         </div>
         
         <div className="flex flex-wrap gap-4">
-          <select 
-            className="px-4 py-2 border border-gray-200 rounded-lg bg-white focus:ring-2 focus:ring-blue-500 focus:border-transparent min-w-[140px] text-black"
-            value={activeFilters.location}
-            onChange={(e) => onFilterChange('location', e.target.value)}
-          >
-            <option value="">Location</option>
-            <option value="Mumbai">Mumbai</option>
-            <option value="Delhi">Delhi</option>
-            <option value="Bangalore">Bangalore</option>
-            <option value="Hyderabad">Hyderabad</option>
-            <option value="Chennai">Chennai</option>
-            <option value="Kolkata">Kolkata</option>
-            <option value="Pune">Pune</option>
-            <option value="Ahmedabad">Ahmedabad</option>
-          </select>
-          
-          <select 
-            className="px-4 py-2 border border-gray-200 rounded-lg bg-white focus:ring-2 focus:ring-blue-500 focus:border-transparent min-w-[140px] text-black"
-            value={activeFilters.specialization}
-            onChange={(e) => onFilterChange('specialization', e.target.value)}
-          >
-            <option value="">Specialization</option>
-            <option value="Residential">Residential</option>
-            <option value="Commercial">Commercial</option>
-            <option value="Sustainable">Sustainable</option>
-            <option value="Urban Planning">Urban Planning</option>
-            <option value="Historical">Historical</option>
-            <option value="Industrial">Industrial</option>
-            <option value="Landscape">Landscape</option>
-            <option value="Interior Design">Interior Design</option>
-          </select>
-
-          <select 
-            className="px-4 py-2 border border-gray-200 rounded-lg bg-white focus:ring-2 focus:ring-blue-500 focus:border-transparent min-w-[140px] text-black"
-            value={activeFilters.projectSize}
-            onChange={(e) => onFilterChange('projectSize', e.target.value)}
-          >
-            <option value="">Project Size</option>
-            <option value="small">Small (&lt;10,000 sq ft)</option>
-            <option value="medium">Medium (10,000-50,000 sq ft)</option>
-            <option value="large">Large (&gt;50,000 sq ft)</option>
-            <option value="xlarge">Extra Large (&gt;100,000 sq ft)</option>
-          </select>
+          {["location", "specialization", "projectSize", "priceRange"].map((filter) => (
+            <select 
+              key={filter}
+              className="px-4 py-2 border border-gray-200 rounded-lg bg-white focus:ring-2 focus:ring-blue-500 focus:border-transparent min-w-[140px] text-black"
+              value={activeFilters[filter] || ""}
+              onChange={(e) => onFilterChange(filter, e.target.value)}
+            >
+              <option value="">{filter.charAt(0).toUpperCase() + filter.slice(1)}</option>
+              {filter === "location" && ["Mumbai", "Delhi", "Bangalore", "Hyderabad", "Chennai", "Kolkata", "Pune", "Ahmedabad"].map(option => (
+                <option key={option} value={option}>{option}</option>
+              ))}
+              {filter === "specialization" && ["Residential", "Commercial", "Sustainable", "Urban Planning", "Historical", "Industrial", "Landscape", "Interior Design"].map(option => (
+                <option key={option} value={option}>{option}</option>
+              ))}
+              {filter === "projectSize" && [
+                { value: "small", label: "Small (<10,000 sq ft)" },
+                { value: "medium", label: "Medium (10,000-50,000 sq ft)" },
+                { value: "large", label: "Large (>50,000 sq ft)" },
+                { value: "xlarge", label: "Extra Large (>100,000 sq ft)" }
+              ].map(({ value, label }) => (
+                <option key={value} value={value}>{label}</option>
+              ))}
+              {filter === "priceRange" && [
+                { value: "low", label: "Low (<$100K)" },
+                { value: "medium", label: "Medium ($100K-$500K)" },
+                { value: "high", label: "High ($500K-$1M)" },
+                { value: "premium", label: "Premium (>$1M)" }
+              ].map(({ value, label }) => (
+                <option key={value} value={value}>{label}</option>
+              ))}
+            </select>
+          ))}
           
           <button className="flex items-center gap-2 px-4 py-2 bg-gray-100 text-gray-700 rounded-lg hover:bg-gray-200 transition-colors">
             <SlidersHorizontal className="w-5 h-5" />
@@ -75,41 +65,21 @@ export function SearchFilters({ onFilterChange, activeFilters }: SearchFiltersPr
         </div>
       </div>
 
-      {(activeFilters.location || activeFilters.specialization || activeFilters.projectSize) && (
+      {Object.values(activeFilters).some(value => value) && (
         <div className="flex flex-wrap gap-2 mt-4">
-          {activeFilters.location && (
-            <div className="flex items-center gap-2 bg-blue-50 text-blue-700 px-3 py-1 rounded-full text-sm">
-              Location: {activeFilters.location}
-              <button 
-                className="hover:text-blue-900"
-                onClick={() => onFilterChange('location', '')}
-              >
-                <X className="w-4 h-4" />
-              </button>
-            </div>
-          )}
-          {activeFilters.specialization && (
-            <div className="flex items-center gap-2 bg-blue-50 text-blue-700 px-3 py-1 rounded-full text-sm">
-              Specialization: {activeFilters.specialization}
-              <button 
-                className="hover:text-blue-900"
-                onClick={() => onFilterChange('specialization', '')}
-              >
-                <X className="w-4 h-4" />
-              </button>
-            </div>
-          )}
-          {activeFilters.projectSize && (
-            <div className="flex items-center gap-2 bg-blue-50 text-blue-700 px-3 py-1 rounded-full text-sm">
-              Project Size: {activeFilters.projectSize}
-              <button 
-                className="hover:text-blue-900"
-                onClick={() => onFilterChange('projectSize', '')}
-              >
-                <X className="w-4 h-4" />
-              </button>
-            </div>
-          )}
+          {Object.entries(activeFilters).map(([key, value]) => (
+            value && (
+              <div key={key} className="flex items-center gap-2 bg-blue-50 text-blue-700 px-3 py-1 rounded-full text-sm">
+                {key.charAt(0).toUpperCase() + key.slice(1)}: {value}
+                <button 
+                  className="hover:text-blue-900"
+                  onClick={() => onFilterChange(key, '')}
+                >
+                  <X className="w-4 h-4" />
+                </button>
+              </div>
+            )
+          ))}
         </div>
       )}
     </div>
