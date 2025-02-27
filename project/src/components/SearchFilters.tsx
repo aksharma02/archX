@@ -48,10 +48,10 @@ export function SearchFilters({ onFilterChange, activeFilters }: SearchFiltersPr
                 <option key={value} value={value}>{label}</option>
               ))}
               {filter === "priceRange" && [
-                { value: "low", label: "Low (<$100K)" },
-                { value: "medium", label: "Medium ($100K-$500K)" },
-                { value: "high", label: "High ($500K-$1M)" },
-                { value: "premium", label: "Premium (>$1M)" }
+                { value: "low", label: "Low (<₹10 Lakh)" },
+                { value: "medium", label: "Medium (₹10 Lakh - ₹50 Lakh)" },
+                { value: "high", label: "High (₹50 Lakh - ₹1 Crore)" },
+                { value: "premium", label: "Premium (>₹1 Crore)" }
               ].map(({ value, label }) => (
                 <option key={value} value={value}>{label}</option>
               ))}
