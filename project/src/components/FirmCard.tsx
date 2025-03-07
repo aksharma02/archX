@@ -57,9 +57,12 @@ export function FirmCard({ firm, onClick }: FirmCardProps) {
         </div>
 
         {/* Firm Description */}
-        {firm?.description && (
-          <p className="text-gray-700 text-sm mb-4 line-clamp-2">{firm.description}</p>
-        )}
+{firm?.description && (
+  <p className="text-gray-700 text-sm mb-4 line-clamp-2" title={firm.description}>
+    {firm.description}
+  </p>
+)}
+
 
         {/* Projects & Established Year */}
         <div className="flex items-center gap-4 text-sm text-gray-700 mb-4">
