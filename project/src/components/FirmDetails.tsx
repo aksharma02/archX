@@ -25,7 +25,7 @@ export function FirmDetails({ firm, onClose }: FirmDetailsProps) {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
             <div>
               <div className="flex items-center gap-2 text-gray-600 mb-4">
-                <MapPin className="w-5 h-5" />
+                <MapPin className="w-6 h-6" />
                 <span>{firm.location}</span>
               </div>
               <p className="text-gray-700 mb-6">{firm.description}</p>
